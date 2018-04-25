@@ -3,17 +3,20 @@ import { Alert, Button, Image, StyleSheet, Text, TextInput, View } from 'react-n
 import axios from 'axios';
 
 export default class App extends React.Component {
-
-  state = {
-    text: 'useless placeholder',
-    url: 'https://pokeapi.co/api/v2/pokemon/1',
-    pokemon: {}
+  constructor(){
+    super()
+    
+    this.state = {
+      id: 1,
+      url: 'https://pokeapi.co/api/v2/pokemon/',
+      pokemon: {}
+    }
   }
 
-  componentDidMount() {
-    axios.get(this.state.url).then(res => this.setState({
+  getPokemon() {
+    axios.get(`${this.state.url}${this.state.id}`).then(res => this.setState({
       pokemon: res.data,
-      sprites: res.data.sprites.front_default
+      sprite: res.data.sprites.front_default
     }))
   }
 
@@ -22,22 +25,24 @@ export default class App extends React.Component {
       <View style={styles.container}>
 
         <Image
-          source={{ uri: this.state.sprites }}
+          source={{ uri: this.state.sprite }}
           style={{ width: 400, height: 400 }}
         />
 
+        <Text>{this.state.pokemon.name}</Text>
+
         <TextInput
           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={(text) => this.setState({ text })}
-          value={this.state.text}
+          onChangeText={(id) => this.setState({ id })}
+          value={'id'}
         />
 
 
         <Button
           onPress={() => {
-            Alert.alert(this.state.pokemon.name);
+            this.getPokemon(this.state.id);
           }}
-          title="Press Me"
+          title="Search"
         />
 
       </View>
