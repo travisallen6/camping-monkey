@@ -10,12 +10,12 @@ export default class StarWars extends React.Component {
         name: '',
         gender: '',
         haircolor: '',
-        id: 0
+        id: null
     }
   }
 
   getPerson(personId) {
-    axios.get(`http https://swapi.co/api/people/${personId}`)
+    axios.get(`https://swapi.co/api/people/${personId}`)
     .then(res => this.setState({
         name: res.data.name,
         gender: res.data.gender,
@@ -25,7 +25,7 @@ export default class StarWars extends React.Component {
 
   render(){
       return(
-          <View>
+          <View style={styles.container}>
                <Text>Name: {this.state.name}</Text>
                <Text>Gender: {this.state.gender}</Text>
                <Text>Hair Color: {this.state.haircolor}</Text>
@@ -33,7 +33,7 @@ export default class StarWars extends React.Component {
                 <TextInput
                     style={{ width:100, height: 40, borderColor: 'gray', borderWidth: 1 }}
                     onChangeText={(id) => this.setState({ id })}
-                    value={''}
+                    value={this.state.id}
                 />
 
                 <Button
@@ -53,3 +53,13 @@ export default class StarWars extends React.Component {
       )
   }
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+  
+    },
+  });
