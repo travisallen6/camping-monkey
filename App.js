@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { StackNavigator } from 'react-navigation'; // Version can be specified in package.json
 import Pokemon from './Pokemon';
+import Starwars from './StarWars'
 import Home from './Home';
 
 
@@ -13,9 +14,9 @@ const RootStack = StackNavigator(
     Pokemon: {
       screen: Pokemon,
     },
-    // Starwars: {
-    //   screen: Starwars,
-    // },
+    Starwars: {
+      screen: Starwars,
+    },
   },
   {
     initialRouteName: 'Home',
