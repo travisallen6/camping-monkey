@@ -45,6 +45,11 @@ export default class Pokemon extends React.Component {
           title="Search"
         />
 
+        <Button
+          title='Back'
+          onPress={() => this.props.navigation.goBack()}
+        />
+
       </View>
     );
   }
