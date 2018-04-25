@@ -7,14 +7,14 @@ export default class Pokemon extends React.Component {
     super()
     
     this.state = {
-      id: 1,
       url: 'https://pokeapi.co/api/v2/pokemon/',
-      pokemon: {}
+      pokemon: {},
+      id: null
     }
   }
 
   getPokemon() {
-    axios.get(`${this.state.url}${this.state.id}`).then(res => this.setState({
+    axios.get(`${this.state.url}${this.state.id.toLowerCase()}`).then(res => this.setState({
       pokemon: res.data,
       sprite: res.data.sprites.front_default
     }))
@@ -32,9 +32,9 @@ export default class Pokemon extends React.Component {
         <Text>{this.state.pokemon.name}</Text>
 
         <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+          style={{ width:100, height: 40, borderColor: 'gray', borderWidth: 1 }}
           onChangeText={(id) => this.setState({ id })}
-          value={'____'}
+          value={''}
         />
 
 
